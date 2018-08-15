@@ -97,25 +97,6 @@ class _Contact:
             return True
         return None
 
-    def __eq__(self, other):
-        if isinstance(other, _Contact):
-            return self.id == other.id
-        elif isinstance(other, str):
-            return self.id == other
-        else:
-            return False
-
-    def __ne__(self, other):
-        if isinstance(other, _Contact):
-            return self.id != other.id
-        elif isinstance(other, str):
-            return self.id != other
-        else:
-            return True
-
-    def __hash__(self):
-        return int(hexlify(self.id), 16) if self.id else int(sum(int(x) for x in self.address.split('.')) + self.port)
-
     def compact_ip(self):
         compact_ip = reduce(
             lambda buff, x: buff + bytearray([int(x)]), self.address.split('.'), bytearray())
